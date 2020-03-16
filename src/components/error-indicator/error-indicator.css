@@ -1,0 +1,13 @@
+.error-indicator {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.2rem;
+    color: darkorange;
+}
+.error-icon {
+    width: 50px;
+    filter: invert(100%);
+    margin: .1rem;
+}
