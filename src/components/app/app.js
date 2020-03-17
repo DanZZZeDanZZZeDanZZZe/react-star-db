@@ -11,6 +11,7 @@ const App = () => {
   const [state, setstate] = useState({
     planetVisible: <RandomPlanet/>
   });
+  const [selectedPerson, setSelectedPerson] = useState(5)
 
   const clickHandler = () => {
     let value = null
@@ -25,6 +26,10 @@ const App = () => {
   useEffect(() => {
     console.log(state)
   }, [state]);
+
+  const onPersonSelected = (id) => {
+    setSelectedPerson(id)
+  }
 
   return (
     <div>
@@ -41,10 +46,10 @@ const App = () => {
 
       <div className="row mb2">
         <div className="col-md-6">
-          <ItemList />
+          <ItemList onItemSelected={onPersonSelected}/>
         </div>
         <div className="col-md-6">
-          <PersonDetails />
+          <PersonDetails personId={selectedPerson}/>
         </div>
       </div>
     </div>
