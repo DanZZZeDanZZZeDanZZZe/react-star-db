@@ -1,47 +1,63 @@
-import React, {useState, useEffect} from 'react';
+import React, {Component} from 'react';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import './app.css';
 import PeoplePage from '../../people-page';
+import ItemList from '../item-list';
+import PersonDetails from '../person-details';
+import SwapiService from '../../services/swapi-service';
 
-const App = () => {
-  const [state, setstate] = useState({
-    planetVisible: <RandomPlanet/>
-  });
+export default class App extends Component {
 
-  const clickHandler = () => {
-    let value = null
-    const {planetVisible} = state
-    if (planetVisible === null) {
-      value = <RandomPlanet/>
+  swapiService = new SwapiService()
+
+    state = {
+        selectedPerson: 3,
+        hasError: false
     }
-    setstate({
-      planetVisible: value
-    })
-  } 
-  useEffect(() => {
-    console.log(state)
-  }, [state]);
+
+  onPersonSelected = (selectedPerson) => {
+      this.setState({selectedPerson})
+  }
 
 
-  return (
-    <div>
-      <Header />
-      {state.planetVisible}
-      <button 
-        type="button" 
-        onClick={()=>{
-          clickHandler()
-          console.log(state)
-        }}
-        className="btn toggle-planet-button"
-      >
-        Toggle random planet
-      </button>
-      <PeoplePage/>
-    </div>
-  );
+
+  render() {
+    return (
+      <div>
+        <Header />
+
+        <RandomPlanet/>
+
+        <PeoplePage/>
+
+      </div>
+    )
+  }
 };
+/* <div className="row mb2">
+          <div className="col-md-6">
+            <ItemList 
+                onItemSelected={this.onPersonSelected}
+                getData={this.swapiService.getAllStarships}
+                renderItem={(item) => item.name}
+            />
+          </div>
+          <div className="col-md-6">
+            starships
+          </div>
+        </div>
 
-export default App;
+        <div className="row mb2">
+          <div className="col-md-6">
+            <ItemList 
+                onItemSelected={this.onPersonSelected}
+                getData={this.swapiService.getAllPlanets}
+                renderItem={(item) => (item.name)}
+            />
+          </div>
+          <div className="col-md-6">
+              planets
+          </div>
+        </div>*/

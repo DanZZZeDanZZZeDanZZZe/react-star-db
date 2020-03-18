@@ -1,9 +1,0 @@
-.toggle-planet-button {
-    margin:  0 0 .5rem 0;
-    background: orange;
-    border-color: white;
-}
-.toggle-planet-button:hover {
-    background: black;
-    border-color: white;
-}
