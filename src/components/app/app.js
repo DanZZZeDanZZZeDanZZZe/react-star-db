@@ -4,9 +4,9 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import './app.css';
 import PeoplePage from '../../people-page';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
 import SwapiService from '../../services/swapi-service';
+import Row from '../row';
+import ItemDetails, { Record } from '../item-details';
 
 export default class App extends Component {
 
@@ -22,15 +22,44 @@ export default class App extends Component {
   }
 
 
-
   render() {
+    const {
+      getPerson,
+      getStarship,
+      getPersonImage,
+      getStarshipImage
+    } = this.swapiService
+
+    const personDetails = (
+          <ItemDetails
+            itemId={11} 
+            getData={getPerson} 
+            getImageUrl={getPersonImage}
+          >
+            <Record field="gender" label="Gender"/>
+            <Record field="eyeColor" label="Eye Color"/>
+          </ItemDetails>
+          
+    )
+
+    const starshipDetails = (
+      <ItemDetails 
+        itemId={5} 
+        getData={getStarship} 
+        getImageUrl={getStarshipImage}
+      >
+      </ItemDetails>
+)
     return (
       <div>
         <Header />
 
         <RandomPlanet/>
 
-        <PeoplePage/>
+        <Row 
+          left={personDetails}
+          right={starshipDetails}
+        />
 
       </div>
     )
