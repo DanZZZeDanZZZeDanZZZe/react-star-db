@@ -7,6 +7,7 @@ import PeoplePage from '../../people-page';
 import SwapiService from '../../services/swapi-service';
 import Row from '../row';
 import ItemDetails, { Record } from '../item-details';
+import ItemList from '../item-list';
 
 export default class App extends Component {
 
@@ -48,6 +49,9 @@ export default class App extends Component {
         getData={getStarship} 
         getImageUrl={getStarshipImage}
       >
+          <Record field="model" label="Model"/>
+          <Record field="length" label="Length"/>
+          <Record field="costInCredits" label="Cost"/>
       </ItemDetails>
 )
     return (
@@ -55,9 +59,19 @@ export default class App extends Component {
         <Header />
 
         <RandomPlanet/>
-
         <Row 
-          left={personDetails}
+          left={
+            <ItemList 
+                onItemSelected={this.onPersonSelected}
+                getData={this.swapiService.getAllPeople}
+            >
+                {(i) => (
+                    `${i.name} (${i.birthYear})`
+                )}
+
+
+            </ItemList>
+          }
           right={starshipDetails}
         />
 
