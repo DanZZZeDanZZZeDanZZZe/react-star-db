@@ -9,6 +9,15 @@ import Row from '../row';
 import ItemDetails, { Record } from '../item-details';
 import ItemList from '../item-list';
 
+import {
+  PersonDetails,
+  PLanetDetails,
+  StarshipDetails,
+  PersonList,
+  PLanetList,
+  StarshipList
+} from '../sw-components/index'
+
 export default class App extends Component {
 
   swapiService = new SwapiService()
@@ -31,50 +40,21 @@ export default class App extends Component {
       getStarshipImage
     } = this.swapiService
 
-    const personDetails = (
-          <ItemDetails
-            itemId={11} 
-            getData={getPerson} 
-            getImageUrl={getPersonImage}
-          >
-            <Record field="gender" label="Gender"/>
-            <Record field="eyeColor" label="Eye Color"/>
-          </ItemDetails>
-          
-    )
 
-    const starshipDetails = (
-      <ItemDetails 
-        itemId={5} 
-        getData={getStarship} 
-        getImageUrl={getStarshipImage}
-      >
-          <Record field="model" label="Model"/>
-          <Record field="length" label="Length"/>
-          <Record field="costInCredits" label="Cost"/>
-      </ItemDetails>
-)
     return (
       <div>
         <Header />
 
-        <RandomPlanet/>
-        <Row 
-          left={
-            <ItemList 
-                onItemSelected={this.onPersonSelected}
-                getData={this.swapiService.getAllPeople}
-            >
-                {(i) => (
-                    `${i.name} (${i.birthYear})`
-                )}
+        <PersonDetails itemId={11}/>
+        <StarshipDetails itemId={11}/>
+        <PLanetDetails itemId={11}/>
 
-
-            </ItemList>
-          }
-          right={starshipDetails}
-        />
-
+        <PersonList>
+          { ({name}) => <span>{name}</span> }
+        </PersonList>
+        <StarshipList>
+          { ({name}) => <span>{name}</span> }
+        </StarshipList>
       </div>
     )
   }
@@ -104,3 +84,20 @@ export default class App extends Component {
               planets
           </div>
         </div>*/
+        /*<RandomPlanet/>
+        <Row 
+          left={
+            <ItemList 
+                onItemSelected={this.onPersonSelected}
+                getData={this.swapiService.getAllPeople}
+            >
+                {(i) => (
+                    `${i.name} (${i.birthYear})`
+                )}
+
+
+            </ItemList>
+          }
+          right={starshipDetails}
+        />
+ */

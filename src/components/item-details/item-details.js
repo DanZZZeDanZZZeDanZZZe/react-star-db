@@ -63,8 +63,8 @@ export default class itemDetails extends Component {
     const {image, item} = this.state
 
     const {
-      name, gender, 
-      birthYear, eyeColor } = this.state.item;
+      name
+     } = this.state.item;
 
     return (
       <div className="item-details card">
