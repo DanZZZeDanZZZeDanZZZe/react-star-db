@@ -9,6 +9,8 @@ import Row from '../row';
 import ItemDetails, { Record } from '../item-details';
 import ItemList from '../item-list';
 
+import {SwapiServiceProvider} from '../swapi-service-context'
+
 import {
   PersonDetails,
   PLanetDetails,
@@ -42,16 +44,18 @@ export default class App extends Component {
 
 
     return (
-      <div>
-        <Header />
+      <SwapiServiceProvider value={this.swapiService}>
+        <div>
+          <Header />
 
-        <PersonDetails itemId={11}/>
-        <StarshipDetails itemId={11}/>
-        <PLanetDetails itemId={11}/>
+          <PersonDetails itemId={11}/>
+          <StarshipDetails itemId={11}/>
+          <PLanetDetails itemId={11}/>
 
-        <PersonList/>
-        <StarshipList/>
-      </div>
+          <PersonList/>
+          <StarshipList/>
+        </div>
+      </SwapiServiceProvider>
     )
   }
 };
