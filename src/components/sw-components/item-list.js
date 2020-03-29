@@ -27,7 +27,7 @@ const PersonList = withSwapiService(withData(ListWithChildren), mapPersonMethods
 
 const mapPLanetMethodsToProps = (swapiService) => {
     return {
-        getData: swapiService.getAllPLanets
+        getData: swapiService.getAllPlanets
     }
 }
 

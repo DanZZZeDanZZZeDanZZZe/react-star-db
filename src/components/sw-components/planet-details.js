@@ -1,6 +1,5 @@
 import ItemDetails, { Record } from "../item-details";
 import React from 'react'
-import { SwapiServiceConsumer } from "../swapi-service-context";
 import { withSwapiService } from "../hoc-helpers";
 
 const PLanetDetails = (props) => {
